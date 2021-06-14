@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export",
+    "export-png": "slidev export --format png"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.20.2",
+    "@slidev/theme-default": "*",
+    "@slidev/theme-seriph": "*",
+    "alpinejs": "^2.8.2"
+  },
+  "name": "alpineworkshopwtw",
+  "devDependencies": {
+    "playwright-chromium": "^1.11.1"
+  }
+}
