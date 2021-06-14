@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aufgabe 1</title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  </head>
+  <body>
+    <div
+      class="relative h-10 overflow-hidden text-center bg-blue-100"
+      x-data="{
+        bannerText: 0,
+        timer: 3000,
+        changeBanner: function() {
+            if(this.bannerText == 2) this.bannerText = 0;
+            else this.bannerText = this.bannerText + 1;
+            },
+        text:[
+            'JETZT NEU',
+            'UNGLAUBLICH',
+            'ALLES UM 90% REDUZIERT',
+          ]
+        }"
+      x-init="setInterval(function(){ changeBanner() }, timer);"
+    >
+      <p
+        class="absolute inset-0 py-2 pl-2 pr-12 text-sm font-bold sm:text-xl"
+        x-show="bannerText == 0"
+        x-transition:enter="transition ease-out duration-500 delay-300"
+        x-transition:enter-start="transform -translate-y-14"
+        x-transition:enter-end="transform translate-y-0"
+        x-transition:leave="transition ease-in duration-500"
+        x-transition:leave-start="transform translate-y-0 opacity-100"
+        x-transition:leave-end="transform translate-y-14 opacity-50"
+        x-text="text[0]"
+      ></p>
+      <p
+        class="absolute inset-0 py-2 pl-2 pr-12 text-sm font-bold md:text-xl"
+        x-show="bannerText == 1"
+        x-transition:enter="transition ease-out duration-500 delay-300"
+        x-transition:enter-start="transform -translate-y-14"
+        x-transition:enter-end="transform translate-y-0"
+        x-transition:leave="transition ease-in duration-500"
+        x-transition:leave-start="transform translate-y-0 opacity-100"
+        x-transition:leave-end="transform translate-y-14 opacity-50"
+        x-text="text[1]"
+      ></p>
+      <p
+        class="absolute inset-0 py-2 pl-2 pr-12 text-sm font-bold md:text-xl"
+        x-show="bannerText == 2"
+        x-transition:enter="transition ease-out duration-500 delay-300"
+        x-transition:enter-start="transform -translate-y-14"
+        x-transition:enter-end="transform translate-y-0"
+        x-transition:leave="transition ease-in duration-500"
+        x-transition:leave-start="transform translate-y-0 opacity-100"
+        x-transition:leave-end="transform translate-y-14 opacity-50"
+        x-text="text[2]"
+      ></p>
+    </div>
+  </body>
+</html>

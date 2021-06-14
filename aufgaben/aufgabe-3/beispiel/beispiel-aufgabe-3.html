@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aufgabe 3</title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  </head>
+  <body>
+    <!-- NOTIFICATION -->
+    <div
+      class="fixed inset-0 z-10 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
+      x-data="{ isOpen: false, heading: '' , message: '' , type: ''}"
+      x-on:trigger-notification.window="heading = $event.detail.heading; message = $event.detail.message; type = $event.detail.type;  isOpen = true"
+    >
+      <div class="flex flex-col items-center w-full space-y-4 sm:items-end">
+        <div
+          class="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-5"
+          x-show="isOpen"
+          x-transition:enter="transform ease-out duration-300 transition"
+          x-transition:enter-start="delay-500 translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+          x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
+          x-transition:leave="transition ease-in duration-200"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+        >
+          <div class="p-4">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div
+                  class="flex items-center justify-center w-6 h-6 border-2 rounded-full "
+                >
+                  <span x-show="type === 'error'" class="text-red-600">!</span>
+                  <span x-show="type === 'warning'" class="text-yellow-600"
+                    >?</span
+                  >
+                  <span x-show="type === 'success'" class="text-green-600"
+                    >✓</span
+                  >
+                </div>
+              </div>
+              <div class="ml-3 w-0 flex-1 pt-0.5">
+                <p class="text-sm font-medium text-gray-900" x-text="heading">
+                  <!-- NOTIFICATION HEADING -->
+                </p>
+                <p class="mt-1 text-sm text-gray-500" x-text="message">
+                  <!-- NOTIFICATION TEXT -->
+                </p>
+              </div>
+              <div class="flex flex-shrink-0 ml-4">
+                <button
+                  class="inline-flex px-1 text-gray-400 bg-white rounded-md hover:text-gray-500"
+                  x-on:click="isOpen = false"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- NOTIFICATION END -->
+    <!-- BUTTON GROUP -->
+    <div class="flex justify-center mt-20" x-data>
+      <span class="relative z-0 inline-flex rounded-md shadow-sm">
+        <button
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50"
+          x-on:click="$dispatch('trigger-notification', { heading: 'An error oucurred!', message: 'Irgendwas ist ordentlich schief gelaufen...', type: 'error'})"
+        >
+          Error
+        </button>
+        <button
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50"
+          x-on:click="$dispatch('trigger-notification', { heading: 'Everything fine', message: 'Hat alles funktionert', type: 'success'})"
+        >
+          Success
+        </button>
+        <button
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50"
+          x-on:click="$dispatch('trigger-notification', { heading: 'Oh Oh', message: 'Das wird gefährlich', type: 'warning'})"
+        >
+          Warning
+        </button>
+      </span>
+    </div>
+    <!-- BUTTON GROUP END -->
+  </body>
+</html>
