@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aufgabe 2</title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  </head>
+  <body>
+    <!--
+      TODO:
+        [] Passwort Hinweise je nach Zustand Grün oder Rot einfärben
+        [] Verhindern das Button "Account erstellen" gedrückt werden kann, sollten nicht alle Regeln eingehalten sein
+        [] BONUS: Passwort zeigen/verstecken (attribute type password/text)
+
+      Styling: die relevanten tailwind Klassen heißen wie folgt:
+        text-red-700 (für roten Text)
+        text-green-700 (für grünen Text)
+
+     -->
+    <div class="max-w-sm mx-auto" x-data="validatePassword()">
+      <form class="mt-8" action="#" method="POST">
+        <div class="rounded-md shadow-sm">
+          <!-- Passwort Hinweis -->
+          <div>
+            <div class="text-sm">
+              <p class="mt-6 text-gray-700">Wähle dein Passwort</p>
+              <ul class="list-disc list-inside">
+                <li>mindestens 8 Zeichen</li>
+                <li>mindestens eine Zahl</li>
+                <li>mindestens einen Großbuchstaben</li>
+                <li>mindestens eine Sonderzeichen</li>
+              </ul>
+            </div>
+            <div class="mt-6">
+              <input
+                aria-label="Passwort"
+                name="password"
+                type="password"
+                required
+                autocomplete="new-password"
+                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none "
+                placeholder="Passwort"
+              />
+            </div>
+            <div class="flex justify-end">
+              <button>
+                Passwort zeigen
+              </button>
+            </div>
+            <div class="-mt-px"></div>
+          </div>
+        </div>
+        <div class="mt-6">
+          <button
+            type="submit"
+            class="relative flex justify-center w-full px-4 py-2 text-lg font-medium leading-5 text-white transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md group"
+          >
+            Account erstellen
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      /*
+        Für jede der Vier Regeln wurden folgende Funktionen vorbereitet:
+        validateXXXX(string): validiert den gegebenen String und setzt den zugehörigen Boolean
+        hasXXXX(): gibt zugehörigen Boolean zurück
+      */
+      function validatePassword() {
+        return {
+          eightChar: false,
+          oneNumber: false,
+          upperCase: false,
+          specialChar: false,
+          validateEightChar(password) {
+            let pattern = /.{8,}/g; // any character at least eight times
+            this.eightChar = pattern.test(password);
+          },
+          hasEightChar() {
+            return this.eightChar;
+          },
+          validateOneNumber(password) {
+            let pattern = /.*\d.*/g; // at least one number
+            this.oneNumber = pattern.test(password);
+          },
+          hasOneNumber() {
+            return this.oneNumber;
+          },
+          validateUpperCase(password) {
+            let pattern = /.*[A-Z]+.*/g; // at least one UPPERCASE char
+            this.upperCase = pattern.test(password);
+          },
+          hasUpperCase() {
+            return this.upperCase;
+          },
+          validateSpecialChar(password) {
+            let pattern = /[!@#\$%\^\&*\)\(+\-\/=:._"§\[\]\{\}\?]+/g; // matches spezial char aka: !"§$%&/(){}[]=?+*#-_.:@
+            this.specialChar = pattern.test(password);
+          },
+          hasSpecialChar() {
+            return this.specialChar;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

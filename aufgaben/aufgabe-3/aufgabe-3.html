@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aufgabe 3</title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  </head>
+  <body>
+    <!--
+      TODO:
+        [] Event dispatchen wenn Button gedrückt wird
+        [] Event Listener an Notification hängen
+        [] Je nach Event zugehöriges ICON anzeigen und Texte für Heading und Message setzen
+        [] Notification schließen wenn "close Button" gedrückt wird
+        [] BONUS: Transitions
+
+     -->
+    <!-- NOTIFICATION -->
+    <div
+      class="fixed inset-0 z-10 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
+    >
+      <div class="flex flex-col items-center w-full space-y-4 sm:items-end">
+        <div
+          class="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-5"
+        >
+          <div class="p-4">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div
+                  class="flex items-center justify-center w-6 h-6 border-2 rounded-full "
+                >
+                  <!-- NOTIFICATION ICON -->
+                  <span class="text-red-600"
+                    >!
+                    <!-- error --></span
+                  >
+                  <span class="text-yellow-600"
+                    >?
+                    <!-- warning --></span
+                  >
+                  <span class="text-green-600"
+                    >✓
+                    <!-- success --></span
+                  >
+                </div>
+              </div>
+              <div class="ml-3 w-0 flex-1 pt-0.5">
+                <p class="text-sm font-medium text-gray-900">
+                  <!-- NOTIFICATION HEADING -->
+                </p>
+                <p class="mt-1 text-sm text-gray-500">
+                  <!-- NOTIFICATION MESSAGE -->
+                </p>
+              </div>
+              <div class="flex flex-shrink-0 ml-4">
+                <button
+                  class="inline-flex px-1 text-gray-400 bg-white rounded-md hover:text-gray-500"
+                >
+                  X
+                  <!-- Close Button -->
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- NOTIFICATION END -->
+    <!-- BUTTON GROUP -->
+    <div class="flex justify-center mt-20">
+      <span class="relative z-0 inline-flex rounded-md shadow-sm">
+        <button
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50"
+        >
+          Error
+        </button>
+        <button
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50"
+        >
+          Success
+        </button>
+        <button
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50"
+        >
+          Warning
+        </button>
+      </span>
+    </div>
+    <!-- BUTTON GROUP END -->
+  </body>
+</html>
